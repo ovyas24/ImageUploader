@@ -1,13 +1,12 @@
 import "./imageUploader.css"
 import Button from '@material-ui/core/Button';
+import React, { useState } from 'react';
 
 const ImageUploader = ({ onImageUploading }) => {
-
     function handleDrop(e){
         e.preventDefault();
         console.log("drop")
         const files = e.dataTransfer.files;
-        console.log(files);
         onImageUploading(files[0]);
         e.stopPropagation();
     }
@@ -29,6 +28,11 @@ const ImageUploader = ({ onImageUploading }) => {
         console.log("leave")
         e.stopPropagation();
     }
+    
+    function handleFile(e){
+        e.preventDefault();
+        onImageUploading(e.target.files[0])
+    }
 
     return (
         <div>
@@ -49,6 +53,7 @@ const ImageUploader = ({ onImageUploading }) => {
                 accept="image/*"
                 style={{ display: 'none' }}
                 id="contained-button-file"
+                onChange={handleFile}
             />
             <label htmlFor="contained-button-file">
                 <Button variant="contained" component="span">
