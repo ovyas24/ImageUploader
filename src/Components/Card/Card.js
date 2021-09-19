@@ -1,11 +1,31 @@
+import { useState } from 'react';
 import ImageUploader from '../Imageuploader/Imageuplaoder';
+import Loader from '../Loader/loader';
 import './Card.css';
 
-
 function Card() {
+  const [isUploaded, seTisUploaded] = useState(false)
+  const [isUploading, setIsUploading] = useState(null)
+  
+  if(isUploading){
+    return (
+      <div className="Card loader">
+        <Loader />
+      </div>
+    )
+  }
+
+  const handleImageUploa = (file) => {
+    setIsUploading(true);
+    setTimeout(() => {
+      seTisUploaded(true)
+      setIsUploading(false)
+    }, 3000)
+  }
+
   return (
     <div className="Card">
-      <ImageUploader />
+      { isUploaded ? <h1>Uploaded</h1> : <ImageUploader onImageUploading={handleImageUploa} /> }
     </div>
   );
 }
