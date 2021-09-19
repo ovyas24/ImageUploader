@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import ImageUploader from '../Imageuploader/Imageuplaoder';
 import Loader from '../Loader/loader';
+import ShowImage from '../showImage/showImage';
+
 import './Card.css';
 
 function Card() {
@@ -25,7 +27,7 @@ function Card() {
 
   return (
     <div className="Card">
-      { isUploaded ? <h1>Uploaded</h1> : <ImageUploader onImageUploading={handleImageUploa} /> }
+      { isUploaded ? <ShowImage /> : <ImageUploader onImageUploading={handleImageUploa} /> }
     </div>
   );
 }
